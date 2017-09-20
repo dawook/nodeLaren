@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	This is home page! <br>
+
+	用户： <input type="text" name="user" id="user"> <br>
+		密码： <input type="password" name="pass" id="pass"> <br>
+		<input type="submit" id="btn"> <br>
+	
+	<script type="text/javascript" src="./ajax.js"></script>
+	<script>
+		
+		window.onload = function () {
+			var oTextUser = document.getElementById('user')
+			var oTextPass = document.getElementById('pass')
+			var oBtn = document.getElementById('btn')
+
+			oBtn.onclick = function () {
+
+				ajax({
+					url: '/login',
+					data: {
+						user: oTextUser.value,
+						pass: oTextPass.value
+					},
+					type: 'post',
+					success: function (data) {
+						var json = eval('(' + data + ')');
+
+						alert(json.msg);
+					}
+				});
+
+			}
+		}
+
+	</script>
+
+</body>
+</html>
